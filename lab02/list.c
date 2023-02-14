@@ -8,14 +8,23 @@ void append_node (node** head_ptr, int new_data) {
 	/* If the list is empty, set the new node to be the head and return */
 	if (*head_ptr == NULL) {
 		/* YOUR CODE HERE */
-		return;
+        node* tmp = (node*)malloc(sizeof(node));
+        tmp->val = new_data;
+        tmp->next = NULL;
+        *head_ptr = tmp;
+        return;
 	}
 	node* curr = *head_ptr;
-	while (/* YOUR CODE HERE */ != NULL) {
+	while (curr->next != NULL) {
 		curr = curr->next;
 	}
 	/* Insert node at the end of the list */
 	/* YOUR CODE HERE */
+    node* tmp = (node*)malloc(sizeof(node));
+    tmp->val = new_data;
+    tmp->next = NULL;
+    curr->next = tmp; 
+
 }
 
 /* Reverse a linked list in place (in other words, without creating a new list).
@@ -26,9 +35,13 @@ void reverse_list (node** head_ptr) {
 	node* next = NULL;
 	while (curr != NULL) {
 		/* INSERT CODE HERE */
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
 	}
 	/* Set the new head to be what originally was the last node in the list */
-	*head_ptr = /* INSERT CODE HERE */
+	*head_ptr = prev;/* INSERT CODE HERE */
 }
 
 
